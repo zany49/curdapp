@@ -8,6 +8,10 @@ import Button from '@material-ui/core/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal } from 'antd';
 
+
+
+const BASE_URL ="https://curdnodeapp.herokuapp.com/"
+
 function App() {
   const[cribs,setCribs] = useState([]);
   const [id,setid]=useState(null);
@@ -17,8 +21,9 @@ function App() {
   const [location,setLocation]=useState("");
   const [search,setSearch]=useState("");
 
+
     function getCribs() {
-      fetch("http://localhost:8000/cribs",{
+      fetch(`${BASE_URL}/cribs`,{
         method: "GET",
       })
       .then(data=>data.json())
@@ -27,7 +32,7 @@ function App() {
     }
 
     function createCribs(){
-      fetch("http://localhost:8000/cribs",{
+      fetch(`${BASE_URL}/cribs`,{
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({name:username,pic:userpic,location: location}),
@@ -38,7 +43,7 @@ function App() {
     }
     function deleteCribs(id){
       alert(id);
-      fetch(`http://localhost:8000/cribs/${id}`,{
+      fetch(`${BASE_URL}/cribs/${id}`,{
         method: "DELETE",
         
       })
@@ -59,7 +64,7 @@ function App() {
 
     function updateCribs(id){
       alert(id);
-      fetch(`http://localhost:8000/cribs/${id}`,{
+      fetch(`${BASE_URL}/cribs/${id}`,{
         method: 'PUT',
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({name:username,pic:userpic,location: location}),
